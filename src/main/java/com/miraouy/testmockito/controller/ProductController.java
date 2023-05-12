@@ -12,8 +12,8 @@ import java.util.List;
 public class ProductController  {
     private  final ServiceProduct serviceProduct;
     @PostMapping
-    public void saveProduct(Product product) {
-
+    public Product saveProduct(Product product) {
+    return  serviceProduct.saveProduct(product);
     }
 
     @GetMapping("/idProduct")

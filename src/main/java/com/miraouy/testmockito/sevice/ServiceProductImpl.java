@@ -13,8 +13,8 @@ public class ServiceProductImpl implements ServiceProduct {
 
     private final ProductRep productRep;
     @Override
-    public void saveProduct(Product product) {
-        productRep.save(product);
+    public Product saveProduct(Product product) {
+       return  productRep.save(product);
     }
 
     @Override
