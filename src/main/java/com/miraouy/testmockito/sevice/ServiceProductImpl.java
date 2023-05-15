@@ -7,14 +7,16 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @RequiredArgsConstructor
 @Service
 public class ServiceProductImpl implements ServiceProduct {
 
     private final ProductRep productRep;
+
     @Override
     public Product saveProduct(Product product) {
-       return  productRep.save(product);
+        return productRep.save(product);
     }
 
     @Override
@@ -29,21 +31,27 @@ public class ServiceProductImpl implements ServiceProduct {
 
     @Override
     public void deleteProduct(Long idProduct) {
-       productRep.deleteById(idProduct);
+        productRep.deleteById(idProduct);
     }
 
     @Override
-    public Product updateProduct(Long idProduct,Product product) {
-        Product productFind=productRep.findById(idProduct).get();
-        if(product==null) {
+    public Product updateProduct(Long idProduct, Product product) {
+        Product productFind = productRep.findById(idProduct).get();
+        if (product == null) {
             System.out.println("this product not found");
         }
-        Product product1=Product.builder()
+        Product product1 = Product.builder()
                 .price(product.getPrice())
                 .name(product.getName())
                 .qte(product.getQte())
                 .build();
         productRep.save(product1);
         return product1;
+    }
+
+    @Override
+    public double income(Long id) {
+        Product product = productRep.findById(id).orElse(null);
+        return product.getPrice();
     }
 }
